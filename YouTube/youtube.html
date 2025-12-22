@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Player</title>
+
+    <!-- Make sure referrer is set correctly -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      id="youtube-iframe"
+      referrerpolicy="strict-origin-when-cross-origin"
+      src=""
+      allowfullscreen
+      allow="autoplay; encrypted-media"
+    ></iframe>
+
+    <script>
+      /*
+        - Tested on series 5 OS 9.0.211, 9.1.92
+        - Tested on series 4 OS 8.5.64, 9.1.92
+        - Tested on series 3 OS 8.5.64, 9.1.92
+      */
+
+      // --- DEFAULTS ---
+      const AUTOPLAY_DEFAULT = "1";
+      const MUTE_DEFAULT = "0";
+      const REL_DEFAULT = "0";
+      const CONTROLS_DEFAULT = "0";
+      const SHOWINFO_DEFAULT = "0";
+      const LOOP_DEFAULT = "0";
+      // ----------------
+
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const videoId = urlParams.get("videoId");
+
+      // TO DO: Add logic to display error if videoId is missing
+      if (!videoId) {
+        console.error("videoId parameter is missing");
+      }
+
+      // Get configuration parameters from URL or set defaults
+      const playlistId = urlParams.get("playlist")
+        ? urlParams.get("playlist")
+        : videoId;
+
+      const autoplay = urlParams.get("autoplay")
+        ? urlParams.get("autoplay")
+        : AUTOPLAY_DEFAULT;
+
+      const mute = urlParams.get("mute") ? urlParams.get("mute") : MUTE_DEFAULT;
+
+      const rel = urlParams.get("rel") ? urlParams.get("rel") : REL_DEFAULT;
+
+      const controls = urlParams.get("controls")
+        ? urlParams.get("controls")
+        : CONTROLS_DEFAULT;
+
+      const showInfo = urlParams.get("showinfo")
+        ? urlParams.get("showinfo")
+        : SHOWINFO_DEFAULT;
+
+      const loop = urlParams.get("loop") ? urlParams.get("loop") : LOOP_DEFAULT;
+
+      // Build video player URL
+      const srcUrl = `https://www.youtube.com/embed/${videoId}?playlist=${playlistId}&autoplay=${autoplay}&mute=${mute}&rel=${rel}&controls=${controls}&showinfo=${showInfo}&loop=${loop}`;
+
+      // MAGIC!
+      const youTubeIframe = document.getElementById("youtube-iframe");
+      youTubeIframe.setAttribute("src", srcUrl);
+    </script>
+  </body>
+</html>
