@@ -27,10 +27,10 @@ function main()
 
   ' Create HTML Widget
 	h = CreateObject("roHtmlWidget",r,config)
-    h.Show()
+  h.Show()
 
-    while true
-
-    end while
+  while true
+    ' Loop forever to stop the script from stopping
+  end while
 
 end function
