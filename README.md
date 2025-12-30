@@ -51,7 +51,7 @@ The resulting URL should look like the following: `http://localhost:9090/youtube
 
 ## I am a BA:Connected/BSN.Content user or Developer, and I have infrastructure to host a web page
 
-The HTML source code can be downloaded from [here](/src/YouTube/youtube.html). Then, upload the `youtube.html` file to your web hosting provider or web server. Finally, update your presentation HTML state URLs; when constructing the new video URL, replace `http://localhost:9090` from the instructions with the appropriate value for your web server and include any subfolders in the URL if necessary.
+The HTML source code can be downloaded from [here](/src/YouTube/youtube.html) (click the **Download raw file** button). Then, upload the `youtube.html` file to your web hosting provider or web server. Finally, update your presentation HTML state URLs; when constructing the new video URL, replace `http://localhost:9090` from the instructions with the appropriate value for your web server and include any subfolders in the URL if necessary.
 
 A few things to keep in mind:
 
