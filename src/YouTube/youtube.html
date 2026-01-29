@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -63,6 +63,14 @@
         ? urlParams.get("playlist")
         : videoId;
 
+      let isMultiVideoPlaylist = false;
+      let listId = "";
+
+      if (urlParams.get("list")) {
+        isMultiVideoPlaylist = true;
+        listId = urlParams.get("list");
+      }
+
       const autoplay = urlParams.get("autoplay")
         ? urlParams.get("autoplay")
         : AUTOPLAY_DEFAULT;
@@ -81,8 +89,14 @@
 
       const loop = urlParams.get("loop") ? urlParams.get("loop") : LOOP_DEFAULT;
 
-      // Build video player URL
-      const srcUrl = `https://www.youtube.com/embed/${videoId}?playlist=${playlistId}&autoplay=${autoplay}&mute=${mute}&rel=${rel}&controls=${controls}&showinfo=${showInfo}&loop=${loop}`;
+      let srcUrl;
+      if (isMultiVideoPlaylist) {
+        // Build video player URL for playlist
+        srcUrl = `https://www.youtube.com/embed/${videoId}?listType=playlist&list=${listId}&autoplay=${autoplay}&mute=${mute}&rel=${rel}&controls=${controls}&showinfo=${showInfo}&loop=${loop}`;
+      } else {
+        // Build video player URL for single video
+        srcUrl = `https://www.youtube.com/embed/${videoId}?playlist=${playlistId}&autoplay=${autoplay}&mute=${mute}&rel=${rel}&controls=${controls}&showinfo=${showInfo}&loop=${loop}`;
+      }
 
       // MAGIC!
       const youTubeIframe = document.getElementById("youtube-iframe");

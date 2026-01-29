@@ -19,9 +19,11 @@ function main()
 
         ' Player should load a HTML widget pointing to itself using port 9090
         ' videoId is the ID of the YouTube video from the YouTube URL https://youtube.com/watch?v=VIDEOID, this parameter is required
-        ' Other parameters supported are 'playlist', 'autoplay', 'mute', 'rel', 'controls', 'showinfo', and 'loop'
+        ' Other parameters supported are 'playlist', 'list', 'autoplay', 'mute', 'rel', 'controls', 'showinfo', and 'loop'
         ' Modify the youtube.html file to change your desired defaults or add support for additional URL parameters
 		url: "http://localhost:9090/youtube.html?videoId=yRuNROeVVKg&autoplay=1&loop=1"
+    ' Sample Playlist URL
+    ' url: "http://localhost:9090/youtube.html?videoId=NchSpu1sLpY&list=PL1QgAgqcnXH8cSu1lkxkZZFIn1UxbOXkM&autoplay=1&loop=1"
 		port: mp
 	}
 
